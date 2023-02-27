@@ -3,7 +3,7 @@ import { ReactComponent as PlusIcon } from "../../essets/icon/Component 6/System
 import Button from "../../UI/Button";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addToBasket } from "../../store/basket/basketReducer";
+import { addToBasket } from "../../store/basket/baskekSlice";
 
 function MealItemForm({ id, title, price }) {
   const dispatch = useDispatch();

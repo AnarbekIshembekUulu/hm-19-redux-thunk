@@ -1,12 +1,11 @@
-import { applyMiddleware, combineReducers, createStore } from "redux"
-import { mealsReducer } from "./meals/mealsReducer"
-import thunk from "redux-thunk"
-import { basketReducer } from "./basket/basketReducer"
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { mealsSlice } from "./meals/mealsSlice";
+import thunk from "redux-thunk";
+import { basketSlice } from "./basket/baskekSlice";
 
-const rootReducer=combineReducers({
-    meals:mealsReducer,
-    basket:basketReducer
-})
+const rootReducer = combineReducers({
+  [mealsSlice.name]: mealsSlice.reducer,
+  [basketSlice.name]: basketSlice.reducer,
+});
 
-
-export const store =createStore(rootReducer, applyMiddleware(thunk))
+export const store = createStore(rootReducer, applyMiddleware(thunk));

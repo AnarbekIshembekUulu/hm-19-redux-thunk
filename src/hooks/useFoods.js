@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMeals } from "../componenets/store/meals/mealsReducer";
+import { getMeals } from "../componenets/store/meals/mealsSlice";
 
 export const useFoods = () => {
   const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState("ASCENDING");
-  const { meals, isLoading, error } = useSelector((state) => state.meals);
+  const { meals=[], isLoading, error } = useSelector((state) => state.meals);
 
   useEffect(() => {
     dispatch(getMeals());

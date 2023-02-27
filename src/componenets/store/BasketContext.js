@@ -32,38 +32,37 @@ const BasketContext = createContext({
 //     }
 //   };
 
-  // const getBasket = async () => {
-  //   try {
-  //     const { data } = await fetchApi("basket");
+// const getBasket = async () => {
+//   try {
+//     const { data } = await fetchApi("basket");
 
-  //     setItems(data.items);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getBasket();
-  // }, []);
+//     setItems(data.items);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// useEffect(() => {
+//   getBasket();
+// }, []);
 
-  const addToBasket = async (newItem) => {
-    try {
-      const response = await fetchApi(`foods/${newItem.id}/addToBasket`, {
-        method: "POST",
-        body: { amount: newItem.amount },
-      });
-      setItems(response.data.items);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const state = {
-    items,
-    addToBasket,
-    updateBasketItem,
-    deleteBasketItem,
-  };
-  return (
-    <BasketContext.Provider value={state}>{children}</BasketContext.Provider>
-  );
+const addToBasket = async (newItem) => {
+  try {
+    const response = await fetchApi(`foods/${newItem.id}/addToBasket`, {
+      method: "POST",
+      body: { amount: newItem.amount },
+    });
+    setItems(response.data.items);
+  } catch (error) {
+    console.log(error);
+  }
 };
+
+const state = {
+  items,
+  addToBasket,
+  updateBasketItem,
+  deleteBasketItem,
+};
+return (
+  <BasketContext.Provider value={state}>{children}</BasketContext.Provider>
+);

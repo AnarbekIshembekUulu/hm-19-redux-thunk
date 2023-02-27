@@ -1,34 +1,32 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { fetchApi } from "../../../lib/feth";
 
-export const basketActionTypes = {
-  ADD_ITEM_SUCCES: "ADD_ITEM_SUCCES",
-  GET_BUSKET_SUCCES: "GET_BUSKET_SUCCES",
-};
+// export const basketActionTypes = {
+//   ADD_ITEM_SUCCES: "ADD_ITEM_SUCCES",
+//   GET_BUSKET_SUCCES: "GET_BUSKET_SUCCES",
+// };
 
 const initialState = {
   items: [],
 };
-export const basketReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case basketActionTypes.GET_BUSKET_SUCCES:
-      return {
-        ...state,
-        items: action.payload,
-      };
 
-    default:
-      return state;
-  }
-};
+export const basketSlice = createSlice({
+  name: "basket",
+  initialState,
+  reducers: {
+    getBasketSucces(state, action) {
+      state.items = action.payload;
+    },
+  },
+});
 
-export const getBasket = () => async (dispatch) => {
+const basketActions = basketSlice.actions;
+
+export const getBasket = () => async (  dispatch) => {
   try {
     const { data } = await fetchApi("basket");
 
-    dispatch({
-      type: basketActionTypes.GET_BUSKET_SUCCES,
-      payload: data.items,
-    });
+    dispatch(basketActions.getBasketSucces(data.items));
   } catch (error) {
     console.log(error);
   }
@@ -54,7 +52,7 @@ export const updateBasketItem =
         method: "PUT",
         body: { amount },
       });
-      dispatch(getBasket())
+      dispatch(getBasket());
     } catch (error) {
       console.log(error);
     }

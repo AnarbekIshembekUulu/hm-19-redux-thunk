@@ -10,7 +10,8 @@ import { store } from "./componenets/store";
 
 function AppContent() {
   const [isBasketVisible, setBasketVisible] = useState(false);
-  const { sortDirection, changeSortDirection, meals, isLoading, error } = useFoods();
+  const { sortDirection, changeSortDirection, meals, isLoading, error } =
+    useFoods();
 
   const clickHandler = () => {
     setBasketVisible((prevState) => !prevState);
@@ -28,7 +29,7 @@ function AppContent() {
           <option value={"DESCENDING"}>expensive</option>
         </select>
         <Summary />
-        <Meals isLoading={isLoading} meals={meals} error={error}/>
+        <Meals isLoading={isLoading} meals={meals} error={error} />
         {isBasketVisible && <Basket onClose={clickHandler} />}
       </Content>
     </>

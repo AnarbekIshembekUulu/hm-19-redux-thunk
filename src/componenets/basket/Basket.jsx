@@ -3,7 +3,10 @@ import TotalAmount from "./TotalAmount";
 import styled from "styled-components";
 import BasketItem from "./BasketItem";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBasketItem, updateBasketItem } from "../store/basket/basketReducer";
+import {
+  deleteBasketItem,
+  updateBasketItem,
+} from "../store/basket/baskekSlice";
 
 function Basket({ onClose }) {
   const dispatch = useDispatch();
