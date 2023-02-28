@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchApi } from "../../../lib/feth";
 
 // export const basketActionTypes = {
@@ -22,7 +22,7 @@ export const basketSlice = createSlice({
 
 const basketActions = basketSlice.actions;
 
-export const getBasket = () => async (  dispatch) => {
+export const getBasket = () => async (dispatch) => {
   try {
     const { data } = await fetchApi("basket");
 
@@ -68,3 +68,18 @@ export const deleteBasketItem = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const submitOrder = createAsyncThunk(
+  "basket/submitOrder",
+  async ({ orderData }, { dispatch, rejectwithValue }) => {
+    try {
+      await fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        method: "POST",
+        body: { orderData },
+      });
+      dispatch(getBasket());
+    } catch (error) {
+      return rejectwithValue("Some thing wen wrong");
+    }
+  }
+);
