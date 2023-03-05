@@ -7,6 +7,7 @@ import { fetchApi } from "../../../lib/feth";
 // };
 
 const initialState = {
+  themeMode: "light",
   items: [],
 };
 
@@ -17,10 +18,13 @@ export const basketSlice = createSlice({
     getBasketSucces(state, action) {
       state.items = action.payload;
     },
+    changeTheme(state, action) {
+      state.themeMode = action.payload;
+    },
   },
 });
 
-const basketActions = basketSlice.actions;
+export const basketActions = basketSlice.actions;
 
 export const getBasket = () => async (dispatch) => {
   try {
@@ -73,7 +77,7 @@ export const submitOrder = createAsyncThunk(
   "basket/submitOrder",
   async ({ orderData }, { dispatch, rejectwithValue }) => {
     try {
-      await fetch(`https://jsonplaceholder.typicode.com/posts`, {
+      await fetchApi(`https://jsonplaceholder.typicode.com/posts`, {
         method: "POST",
         body: { orderData },
       });

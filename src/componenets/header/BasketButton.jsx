@@ -1,5 +1,7 @@
+import { styled } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
+import styledComponent from "styled-components";
+import { getThene } from "../../lib/constants/theme";
 import { ReactComponent as BasketIcons } from "../essets/icon/Component 6/basket-icons.svg";
 
 function BasketButton({ count, ...restProps }) {
@@ -14,37 +16,37 @@ function BasketButton({ count, ...restProps }) {
 
 export default BasketButton;
 
-const StyledButton = styled.button`
-  background: #5a1f08;
-  border-radius: 30px;
-  padding: 12px 32px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-  border-style: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    background-color: #3f1809;
-  }
-  &:hover > #counter {
-    background-color: #71280b;
-  }
-`;
+const StyledButton = styled("button")(({ theme }) => ({
+  background: theme.palette.primary.light,
+  borderRadius: "30px",
+  padding: "12px 32px",
+  fontWeight: 600,
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#ffffff",
+  borderStyle: "none",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  "&:hover > #counter ": {
+    backgroundColor: theme.palette.secondary.dark,
+  },
+}));
 
-const StyledTitle = styled.span`
+const StyledTitle = styledComponent.span`
   margin-left: 12px;
   margin-right: 24px;
 `;
 
-const StyledCounter = styled.span`
-  background: #8a2b06;
+const StyledCounter = styledComponent.span`
+  background: ${getThene().palette.primary.main};
   border-radius: 30px;
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;
-  color: #ffffff;
+  color: ${getThene().palette.primary.contrastText};
   padding: 4px 20px;
 `;

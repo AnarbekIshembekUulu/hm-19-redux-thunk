@@ -1,7 +1,10 @@
+import { styled } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
+// import { useSelector } from "react-redux";
+import styledComponent from "styled-components";
 
 function SummaryInfoCard() {
+  // const themeMode = useSelector((state) => state.basket.themeMode);
   return (
     <Card>
       <StyledTitle>Delicious Food, Delivered To You</StyledTitle>
@@ -19,19 +22,19 @@ function SummaryInfoCard() {
 
 export default SummaryInfoCard;
 
-const Card = styled.div`
-  max-width: 53.375rem;
-  background-color: #383838;
-  padding: 36px 54px;
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  position: relative;
-  margin:-12rem auto;
-  color: antiquewhite;
-  text-align: center;
-`;
+const Card = styled("div")(({ theme }) => ({
+  maxWidth: "53.375rem",
+  backgroundColor: theme.palette.secondary.main,
+  padding: "36px 54px",
+  boxShadow:"0px 6px 16px rgba(0, 0, 0, 0.3)",
+  borderRadius: "16px",
+  position: "relative",
+  margin: "-12rem auto",
+  color: theme.palette.secondary.contrastText,
+  textAlign: "center",
+}));
 
-const StyledTitle = styled.h1`
+const StyledTitle = styledComponent.h1`
   font-weight: 600;
   font-size: 36px;
   line-height: 54px;

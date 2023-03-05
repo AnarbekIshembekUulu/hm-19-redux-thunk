@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { ReactComponent as PlusIcon } from "../../essets/icon/Component 6/System icons.svg";
-import Button from "../../UI/Button";
-import styled from "styled-components";
+import styleComponent from "styled-components";
 import { useDispatch } from "react-redux";
+import { styled } from "@mui/material";
 import { addToBasket } from "../../store/basket/baskekSlice";
+import { TextField } from "@mui/material";
+import ButtonComponent from "../../UI/Button";
 
 function MealItemForm({ id, title, price }) {
   const dispatch = useDispatch();
@@ -28,48 +30,70 @@ function MealItemForm({ id, title, price }) {
     <StyledForm onSubmit={submitHandler}>
       <Container>
         <label htmlFor={id}>Amount</label>
-        <StyledInput
+        <StyledTextField
+          id={id}
+          label=""
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          size="small"
           value={amount}
           onChange={amountChangeHandler}
-          type="number"
-          id={id}
-          min={1}
-          max={5}
-          defaultValue={1}
+          maxRows={"5"}
+          minRows={"1"}
         />
       </Container>
-      <Button>
+      <ButtonComponent>
         <StyledIcon /> Add
-      </Button>
+      </ButtonComponent>
     </StyledForm>
   );
 }
 
 export default MealItemForm;
-const StyledIcon = styled(PlusIcon)`
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  "&": {
+    width: "80px",
+    backgroundColor: theme.palette.succes.contrastText,
+  },
+  "&.MuiOutlinedInput-input": {
+    padding: "20px",
+    color: theme.palette.primary.contrastText,
+  },
+}));
+
+const StyledIcon = styleComponent(PlusIcon)`
   margin-right: 10px;
 `;
 
-const Container = styled.div`
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 12px;
-`;
-const StyledForm = styled.form`
+const Container = styled("div")(({ theme }) => ({
+  fontWeight: 600,
+  fontSize: "18px",
+  marginBottom: "12px",
+  display: "flex",
+  alignItems: "center",
+  label: {
+    paddingRight: "10px",
+    color: theme.palette.primary.contrastText,
+  },
+}));
+const StyledForm = styleComponent.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
-const StyledInput = styled.input`
-  width: 60px;
-  height: 32px;
-  left: 1140px;
-  top: 708px;
-  border: 1px solid #d6d6d6;
-  border-radius: 6px;
-  box-sizing: border-box;
-  margin-left: 20px;
-  font-size: 16px;
-  cursor: pointer;
-`;
+// const StyledInput = styledComponent.input`
+//   width: 60px;
+//   height: 32px;
+//   left: 1140px;
+//   top: 708px;
+//   border: 1px solid #d6d6d6;
+//   border-radius: 6px;
+//   box-sizing: border-box;
+//   margin-left: 20px;
+//   font-size: 16px;
+//   cursor: pointer;
+// `;

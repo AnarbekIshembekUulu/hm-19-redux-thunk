@@ -1,6 +1,5 @@
-// import Modal from "../UI/Modal";
 import TotalAmount from "./TotalAmount";
-import styled from "styled-components";
+import styledComponent from "styled-components";
 import BasketItem from "./BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,17 +11,17 @@ import { uiActions } from "../meals/ui/uiSlice";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
-const style = {
+const style = (theme) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "white",
   boxShadow: 24,
   borderRadius: "10px",
   width: "40rem",
+  backgroundColor: theme.palette.primary.main,
   p: 4,
-};
+});
 
 function Basket({ onClose, open }) {
   const dispatch = useDispatch();
@@ -116,13 +115,13 @@ function Basket({ onClose, open }) {
 
 export default Basket;
 
-const Content = styled.div`
+const Content = styledComponent.div`
   width: 100%;
   height: 100%;
   padding: 0 1rem 1.5rem 1rem;
 `;
 
-const FixedHeightContainer = styled.div`
+const FixedHeightContainer = styledComponent.div`
   max-height: 228px;
   overflow-y: scroll;
 `;

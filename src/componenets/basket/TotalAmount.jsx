@@ -1,12 +1,15 @@
+import { styled } from "@mui/material";
 import React from "react";
-import Button from "../UI/Button";
-import styled from "styled-components";
+import styledComponent from "styled-components";
+import ButtonComponent from "../UI/Button";
 
 function TotalAmount({ price, onClose, onOrder }) {
   const isOrderButton =
-    price > 0 ? <Button onClick={onOrder}>Order</Button> : null;
+    price > 0 ? (
+      <ButtonComponent onClick={onOrder}>Order</ButtonComponent>
+    ) : null;
 
-    const fixedPrice = price.toFixed(2);
+  const fixedPrice = price.toFixed(2);
 
   return (
     <TotalAmountDiv>
@@ -15,9 +18,9 @@ function TotalAmount({ price, onClose, onOrder }) {
         <Price>${fixedPrice}</Price>
       </InfoContainer>
       <ActionButtonContainer>
-        <Button variant="outlined" onClick={onClose}>
+        <ButtonComponent variant="outlined" onClick={onClose}>
           Close
-        </Button>
+        </ButtonComponent>
         {isOrderButton}
       </ActionButtonContainer>
     </TotalAmountDiv>
@@ -26,36 +29,36 @@ function TotalAmount({ price, onClose, onOrder }) {
 
 export default TotalAmount;
 
-const Label = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: center;
-  color: #222222;
-  margin: 0;
-`;
+const Label = styled("p")(({ theme }) => ({
+  fontWeight: 700,
+  fontSize: "20px",
+  lineHeight: "30px",
+  textAlign: "center",
+  color: theme.palette.succes.contrastText,
+  margin: 0,
+}));
+const Price = styled("p")(({ theme }) => ({
+  fontWeight: 600,
+  fontSize: "22px",
+  lineHeight: "33px",
+  color: theme.palette.succes.contrastText,
+  margin: 0,
+}));
 
-const Price = styled.p`
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 33px;
-  color: #8a2b06;
-  margin: 0;
-`;
 
-const InfoContainer = styled.div`
+
+const InfoContainer = styledComponent.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const ActionButtonContainer = styled.div`
+const ActionButtonContainer = styledComponent.div`
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 `;
-  
-const TotalAmountDiv=styled.div`
-  margin-top: 29px;
-`
 
+const TotalAmountDiv = styledComponent.div`
+  margin-top: 29px;
+`;

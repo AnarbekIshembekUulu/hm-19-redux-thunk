@@ -1,9 +1,9 @@
 // import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 // import { fetchApi } from "../../lib/feth";
+import { styled } from "@mui/material";
 import MealItem from "./meal-item/MealItem";
 
-const Meals = ({ meals, isLoading,error }) => {
+const Meals = ({ meals, isLoading, error }) => {
   // const [meals, setMeals] = useState([]);
   // const [error, setError] = useState("");
   // const [isLoading, setLoading] = useState(true);
@@ -23,11 +23,16 @@ const Meals = ({ meals, isLoading,error }) => {
   // }, []);
 
   return (
-    
     // <Card>
     <Card>
       {isLoading && <p>Loading...........</p>}
-      {error && <p style={{color:'red' , textTransform:"uppercase", fontSize:"2rem"} }>{error}</p>}
+      {error && (
+        <p
+          style={{ color: "red", textTransform: "uppercase", fontSize: "2rem" }}
+        >
+          {error}
+        </p>
+      )}
       {meals.map((meal) => {
         return (
           <MealItem
@@ -45,10 +50,10 @@ const Meals = ({ meals, isLoading,error }) => {
 
 export default Meals;
 
-const Card = styled.div`
-  background: #ffffff;
-  border-radius: 16px;
-  width: 64.9375rem;
-  margin: 40px auto;
-  padding: 40px 40px 36px 40px;
-`;
+const Card = styled("div")(({ theme }) => ({
+  background: theme.palette.secondary.light,
+  borderRadius: "16px",
+  width: "64.9375rem",
+  margin: "40px auto",
+  padding: "40px 40px 36px 40px",
+}));
